@@ -39,6 +39,7 @@
 	<body>
 		
 		<script src="js/three.min.js"></script>
+		<script type="text/javascript" src="js/OrbitControls.js"></script>
 
 		<script src="js/STLLoader.js"></script>
 
@@ -49,7 +50,7 @@
 
 			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 
-			var container, stats;
+			var container, stats, controls;
 
 			var camera, cameraTarget, scene, renderer;
 
@@ -83,16 +84,16 @@
 				plane.receiveShadow = true;
 
 
-				// ASCII file
+				// Bike 
 
 				var loader = new THREE.STLLoader();
 				loader.load( 'stl/bike.stl', function ( geometry ) {
 
-					var material = new THREE.MeshPhongMaterial( { color: 0xff5533, specular: 0x111111, shininess: 200 } );
+					var material = new THREE.MeshPhongMaterial( { color: 0x000000, specular: 0x111111, shininess: 200 } );
 					var mesh = new THREE.Mesh( geometry, material );
 
-					mesh.position.set( 0, - 0.25, 0.6 );
-					mesh.rotation.set( 0, - Math.PI / 2, 0 );
+					mesh.position.set( -0.33 , -0.15, 0  );
+					mesh.rotation.set( - Math.PI / 2, 0, 0);
 					mesh.scale.set( 0.0005, 0.0005, 0.0005 );
 
 					mesh.castShadow = true;
@@ -132,7 +133,10 @@
 				stats.domElement.style.top = '0px';
 				container.appendChild( stats.domElement );
 
-				//
+				//orbit controls
+
+				controls = new THREE.OrbitControls(camera, renderer.domElement);
+				controls.target = new THREE.Vector3(0, 0, 0);
 
 				window.addEventListener( 'resize', onWindowResize, false );
 
@@ -186,8 +190,8 @@
 
 				var timer = Date.now() * 0.0005;
 
-				camera.position.x = Math.cos( timer ) * 3;
-				camera.position.z = Math.sin( timer ) * 3;
+				// camera.position.x = Math.cos( timer ) * 3;
+				// camera.position.z = Math.sin( timer ) * 3;
 
 				camera.lookAt( cameraTarget );
 
