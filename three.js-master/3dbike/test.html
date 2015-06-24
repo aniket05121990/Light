@@ -190,16 +190,8 @@
 
 				var timer = Date.now() * 0.0005;
 
-				// if (window.addEventListener)
-				//     window.addEventListener('load', initializeLesson, false);
-				// else if (window.attachEvent)
-				//     window.attachEvent('onload', initializeLesson);
-				// else window.onload = initializeLesson;
-
-
-
-				// camera.position.x = Math.cos( timer ) * 3;
-				// camera.position.z = Math.sin( timer ) * 3;
+				camera.position.x = Math.cos( timer ) * 3;
+				camera.position.z = Math.sin( timer ) * 3;
 
 				camera.lookAt( cameraTarget );
 
